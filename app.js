@@ -18,6 +18,7 @@ var completedTasksHolder=document.getElementById("completed-tasks");//completed-
 var createNewTaskElement=function(taskString){
 
   var listItem=document.createElement("li");
+  listItem.className = "tasks-list__item";
 
   //input (checkbox)
   var checkBox=document.createElement("input");//checkbx
@@ -33,18 +34,20 @@ var createNewTaskElement=function(taskString){
   var deleteButtonImg=document.createElement("img");//delete button image
 
   label.innerText=taskString;
-  label.className="task";
+  label.className="task task-label";
 
   //Each elements, needs appending
   checkBox.type="checkbox";
+  checkBox.className = "input input-checkbox";
   editInput.type="text";
-  editInput.className="task";
+  editInput.className="task input input-text";
 
   editButton.innerText="Edit"; //innerText encodes special characters, HTML does not.
-  editButton.className="edit-task";
+  editButton.className="edit-task button";
 
-  deleteButton.className="delete-task";
+  deleteButton.className="delete-task button";
   deleteButtonImg.src="./remove.svg";
+  deleteButtonImg.className = "close-icon";
   deleteButton.appendChild(deleteButtonImg);
 
 
@@ -82,7 +85,7 @@ var editTask=function(){
 
   var listItem=this.parentNode;
 
-  var editInput=listItem.querySelector("input[type=text]");
+  var editInput=listItem.querySelector("[type=text]");
   var label=listItem.querySelector("label");
   var editBtn=listItem.querySelector(".edit-task");
   var containsClass=listItem.classList.contains("edit-mode");
@@ -156,8 +159,8 @@ var bindTaskEvents=function(taskListItem,checkBoxEventHandler){
   console.log("bind list item events");
   //select ListItems children
   var checkBox=taskListItem.querySelector("input[type=checkbox]");
-  var editButton=taskListItem.querySelector("button.edit-task");
-  var deleteButton=taskListItem.querySelector("button.delete-task");
+  var editButton=taskListItem.querySelector(".edit-task");
+  var deleteButton=taskListItem.querySelector(".delete-task");
 
 
   //Bind editTask to edit button.
